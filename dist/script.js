@@ -111,6 +111,25 @@
     return $script
   }
 
+  /**
+   * simple way to add existing scripts into the list of scripts loaded
+   * this helps once scripts are concatenated
+   * @param paths
+   * @param id
+   */
+  $script.define = function (paths, id ) {
+    paths = (typeof(paths) === 'string') ? [].push(paths) : paths;
+    id = id ? id : paths.join;
+
+    ids[id] = 1;
+
+    for (var key in paths){
+      scripts[paths[key]] = 2;
+    }
+
+
+  };
+
   $script.done = function (idOrDone) {
     $script([null], idOrDone)
   }
